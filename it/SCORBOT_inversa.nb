@@ -1,0 +1,223 @@
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     StyleBox["SCORBOT", "Title"], 
+     StyleBox[":", "Title"], 
+     StyleBox[" ", "Title"], 
+     RowBox[{
+      StyleBox["CALCOLO", "Title"], 
+      StyleBox[" ", "Title"], 
+      StyleBox["CINEMATICA", "Title"], 
+      StyleBox[" ", "Title"], 
+      StyleBox["INVERSA", "Title",
+       FontVariations->{"Underline"->True}], 
+      StyleBox["\[IndentingNewLine]", "Title"], 
+      StyleBox["ISTRUZIONI", "Text",
+       FontColor->GrayLevel[0]]}], 
+     StyleBox[":", "Text"], 
+     StyleBox[" ", "Text"], 
+     StyleBox[
+      RowBox[{
+      "modificare", " ", "opportunamente", " ", "i", " ", "parametri", " ", 
+       "nelle", " ", "sezioni", " ", "\"\<Parametri fissi del robot\>\"", " ",
+        "e", " ", 
+       "\"\<Posizione desiderata, beccheggio, roll\[IGrave]o\>\""}], 
+      "Text"]}], 
+    StyleBox[",", "Text"], 
+    StyleBox[" ", "Text"], 
+    StyleBox[
+     RowBox[{
+      RowBox[{"poi", " ", "premere", " ", "SHIFT"}], " ", "+", " ", 
+      RowBox[{
+      "ENTER", " ", "per", " ", "ottenere", " ", "la", " ", "cinematica", " ",
+        "inversa", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"variabili", " ", "di", " ", "giunto"}], ")"}], ".", " ", 
+        "Il"}], " ", "risultato", " ", "viene", " ", "stampato", " ", "in", 
+       " ", "fondo", " ", "alla", " ", 
+       RowBox[{"pagina", "."}]}]}], "Text"]}], "\[IndentingNewLine]", "*)"}], 
+  "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Parametri", " ", "fissi", " ", "del", " ", "robot"}], " ", "*)"}], 
+  StyleBox["\[IndentingNewLine]", "Subsection"], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"d1", "=", "340."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"d5", "=", "151."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"l1", "=", "16."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"l2", "=", "220."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"l3", "=", "220."}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"Posizione", " ", "desiderata"}], ",", " ", 
+     RowBox[{"beccheggio", ".", " ", "roll\[IGrave]o"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"xDes", "=", "0."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"yDes", "=", "40."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"zDes", "=", "70."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"betaDes", "=", 
+     RowBox[{"40", "\[Degree]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"omegaDes", "=", 
+     RowBox[{"10", "\[Degree]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Calcolo", " ", "delle", " ", "variabili", " ", "di", " ", "giunto", " ", 
+     "e", " ", "preparazione", " ", 
+     RowBox[{"dell", "'"}], "output"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta1", "=", 
+     RowBox[{"ArcTan", "[", 
+      RowBox[{"xDes", ",", " ", "yDes"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"A1", "=", 
+     RowBox[{
+      RowBox[{"xDes", "*", 
+       RowBox[{"Cos", "[", "theta1", "]"}]}], "+", 
+      RowBox[{"yDes", "*", 
+       RowBox[{"Sin", "[", "theta1", "]"}]}], "-", 
+      RowBox[{"d5", "*", 
+       RowBox[{"Cos", "[", "betaDes", "]"}]}], "-", "l1"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"A2", "=", 
+     RowBox[{"d1", "-", "zDes", "-", 
+      RowBox[{"d5", "*", 
+       RowBox[{"Sin", "[", "betaDes", "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta3a", "=", 
+     RowBox[{"ArcCos", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"A1", "^", "2"}], "+", 
+         RowBox[{"A2", "^", "2"}], "-", 
+         RowBox[{"l2", "^", "2"}], "-", 
+         RowBox[{"l3", "^", "2"}]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"2", "*", "l2", "*", "l3"}], ")"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta3b", "=", 
+     RowBox[{"-", 
+      RowBox[{"ArcCos", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"A1", "^", "2"}], "+", 
+          RowBox[{"A2", "^", "2"}], "-", 
+          RowBox[{"l2", "^", "2"}], "-", 
+          RowBox[{"l3", "^", "2"}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", "l2", "*", "l3"}], ")"}]}], "]"}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta2a", "=", 
+     RowBox[{"ArcTan", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"l2", "+", 
+           RowBox[{"l3", "*", 
+            RowBox[{"Cos", "[", "theta3a", "]"}]}]}], ")"}], "*", "A1"}], "+", 
+        RowBox[{"l3", "*", 
+         RowBox[{"Sin", "[", "theta3a", "]"}], "*", "A2"}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"l2", "+", 
+           RowBox[{"l3", "*", 
+            RowBox[{"Cos", "[", "theta3a", "]"}]}]}], ")"}], "*", "A2"}], "-", 
+        RowBox[{"l3", "*", 
+         RowBox[{"Sin", "[", "theta3a", "]"}], "*", "A1"}]}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta2b", "=", 
+     RowBox[{"ArcTan", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"l2", "+", 
+           RowBox[{"l3", "*", 
+            RowBox[{"Cos", "[", "theta3b", "]"}]}]}], ")"}], "*", "A1"}], "+", 
+        RowBox[{"l3", "*", 
+         RowBox[{"Sin", "[", "theta3b", "]"}], "*", "A2"}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"l2", "+", 
+           RowBox[{"l3", "*", 
+            RowBox[{"Cos", "[", "theta3b", "]"}]}]}], ")"}], "*", "A2"}], "-", 
+        RowBox[{"l3", "*", 
+         RowBox[{"Sin", "[", "theta3b", "]"}], "*", "A1"}]}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta4a", "=", 
+     RowBox[{"betaDes", "-", "theta2a", "-", "theta3a", "-", 
+      RowBox[{"Pi", "/", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta4b", "=", 
+     RowBox[{"betaDes", "-", "theta2b", "-", "theta3b", "-", 
+      RowBox[{"Pi", "/", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta5", "=", "omegaDes"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"cinInv", "[", "]"}], ":=", 
+    RowBox[{"StringForm", "[", 
+     RowBox[{
+     "\"\<*** CONFIGURAZIONE CON \!\(\*SubscriptBox[\(\[Theta]\), \(3\)]\)>0 \
+***\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(1\)]\)=``\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(2\)]\)=``\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(3\)]\)=``\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(4\)]\)=``\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(5\)]\)=``\[Degree]\\n\\n\n*** CONFIGURAZIONE CON \!\(\*SubscriptBox[\(\
+\[Theta]\), \(3\)]\)<0 ***\\n\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)=``\
+\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(2\)]\)=``\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(3\)]\)=``\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(4\)]\)=``\[Degree]\\n\!\(\*SubscriptBox[\(\[Theta]\), \
+\(5\)]\)=``\[Degree]\>\"", ",", " ", 
+      RowBox[{"N", "[", 
+       RowBox[{"theta1", "/", "Degree"}], "]"}], ",", " ", 
+      RowBox[{"theta2a", "/", "Degree"}], ",", " ", 
+      RowBox[{"theta3a", "/", "Degree"}], ",", " ", 
+      RowBox[{"theta4a", "/", "Degree"}], ",", " ", 
+      RowBox[{"theta5", "/", "Degree"}], ",", 
+      RowBox[{"theta1", "/", "Degree"}], ",", " ", 
+      RowBox[{"theta2b", "/", "Degree"}], ",", " ", 
+      RowBox[{"theta3b", "/", "Degree"}], ",", " ", 
+      RowBox[{"theta4b", "/", "Degree"}], ",", " ", 
+      RowBox[{"theta5", "/", "Degree"}]}], "]"}]}], "\n", 
+   RowBox[{"cinInv", "[", "]"}]}]}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"ffffffff-ffff-4fff-bfff-ffffffffffff"],
+
+Cell[BoxData[""], \
+"Input",ExpressionUUID->"ffffffff-ffff-4fff-bfff-ffffffffffff"]
+},
+WindowSize->{1364, 691},
+WindowMargins->{{1, Automatic}, {1, Automatic}},
+Visible->True,
+PrivateNotebookOptions->{"FileLeader"->"(* Autor='Massimo Stanzione' *)",
+"FileOutlineCache"->False},
+FrontEndVersion->"12.0 for Linux x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
