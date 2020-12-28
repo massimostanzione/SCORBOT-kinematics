@@ -1,7 +1,7 @@
 # SCORBOT-kinematics
 Forward/inverse kinematics computation for a SCORBOT robot.
 
-🇮🇹 _Files originali in **italiano** nella cartella ["it"](https://github.com/massimostanzione/SCORBOT-kinematics/it) - Original files, written in italian, are into  the ["it"](https://github.com/massimostanzione/SCORBOT-kinematics/it) subfolder._
+🇮🇹 _Files originali in **italiano** nella cartella ["it"](https://github.com/massimostanzione/SCORBOT-kinematics/tree/main/it) - Original files, written in italian, are into  the ["it"](https://github.com/massimostanzione/SCORBOT-kinematics/tree/main/it) subfolder._
 
 ### What is it
 This repository consists of two simple *Mathematica* notebooks I wrote and used in practical activities while following the "Automazione e Robotica con Laboratorio" (12 CFU) course, held at Faculty of Engineering, University of Rome Tor Vergata.
